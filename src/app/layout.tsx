@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import ThemeProvider from "@/providers/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
+import { connectMongoDB } from "@/config/database-config";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,11 +21,13 @@ export const metadata: Metadata = {
   description: "E-Learning platform for developers",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await connectMongoDB();
+
   return (
     <ClerkProvider>
       <html lang="en">
