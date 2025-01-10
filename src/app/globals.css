@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-weight: 500;
+}
+
 * {
   font-family: "Montserrat", sans-serif !important;
   font-weight: 500;
@@ -33,4 +37,8 @@
   border-radius: 0px !important;
   color: white !important;
   box-shadow: none !important;
+}
+
+.ant-form-item {
+  margin-bottom: 0px !important;
 }

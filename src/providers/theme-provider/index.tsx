@@ -20,6 +20,11 @@ export default function ThemeProvider({
             defaultBorderColor: "000",
           },
           Input: { borderRadius: 0, controlHeight: 45, controlOutline: "none" },
+          Select: {
+            borderRadius: 0,
+            controlHeight: 45,
+            controlOutline: "none",
+          },
         },
       }}
     >
