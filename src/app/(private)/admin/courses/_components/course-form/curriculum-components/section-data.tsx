@@ -4,6 +4,8 @@ import type { MenuProps } from "antd";
 import ActionMenuItem from "./action-menu-item";
 import { useState } from "react";
 import SectionFormModal from "./section-form-modal";
+import LessonFormModal from "./lesson-form-modal";
+import LessonData from "./lesson-data";
 
 function SectionData({
   section,
@@ -15,6 +17,7 @@ function SectionData({
   sectionIndex: number;
 }) {
   const [showSectionFormModal, setShowSectionFormModal] = useState(false);
+  const [showLessonFormModal, setShowLessonFormModal] = useState(false);
 
   const handleDeleteSection = () => {
     setSections((prev: any) => {
@@ -53,7 +56,9 @@ function SectionData({
         <ActionMenuItem
           title="Add lesson"
           icon={<PlusIcon size={15} />}
-          onClick={() => {}}
+          onClick={() => {
+            setShowLessonFormModal(true);
+          }}
         />
       ),
     },
@@ -73,6 +78,18 @@ function SectionData({
         </Dropdown>
       </div>
 
+      <div className="flex flex-col gap-5 mt-5">
+        {section.lessons.map((lesson: any, lessonIndex: number) => (
+          <LessonData
+            lesson={lesson}
+            lessonIndex={lessonIndex}
+            setSections={setSections}
+            key={lessonIndex}
+            sectionIndex={sectionIndex}
+          />
+        ))}
+      </div>
+
       {showSectionFormModal && (
         <SectionFormModal
           showSectionFormModal={showSectionFormModal}
@@ -81,6 +98,16 @@ function SectionData({
           selectedSection={section}
           sectionIndex={sectionIndex}
           type="edit"
+        />
+      )}
+
+      {showLessonFormModal && (
+        <LessonFormModal
+          showLessonFormModal={showLessonFormModal}
+          setShowLessonFormModal={setShowLessonFormModal}
+          setSections={setSections}
+          type="add"
+          sectionIndex={sectionIndex}
         />
       )}
     </div>
